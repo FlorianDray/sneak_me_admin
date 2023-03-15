@@ -1,4 +1,4 @@
 bla
 
-git config --global user.name "FlorianDRAY"
-git config --global user.email "floriandray97@gmail.com"
+git config --global user.name "Evan"
+git config --global user.email "Adresse"

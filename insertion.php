@@ -1,54 +1,58 @@
 CREATE DATABASE sneak_me;
-CREATE TABLE sneak_me.utilisateurs (
-	id_utilisateur INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	nom VARCHAR(255) NOT NULL,
-	prenom VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	mot_de_passe VARCHAR(255) NOT NULL,
-	droit BOOL NOT NULL,
-	adresse varchar(255) NOT NULL
+CREATE TABLE sneak_me.users (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	last_name VARCHAR(255) NOT NULL,
+	first_name VARCHAR(255) NOT NULL,
+	mail VARCHAR(255) NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	rule BOOL NOT NULL,
+	adress varchar(255) NOT NULL
 );
-CREATE TABLE sneak_me.couleurs (
-	id_couleur INT PRIMARY KEY NOT NULL,
-	label VARCHAR(255) NOT NULL
+CREATE TABLE sneak_me.colors (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	name VARCHAR(255) NOT NULL
 );
-CREATE TABLE sneak_me.marques (
-	id_marque INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	label VARCHAR(255) NOT NULL
+CREATE TABLE sneak_me.brands (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	name VARCHAR(255) NOT NULL
 );
 CREATE TABLE sneak_me.sneakers (
-	id_sneaker INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	taille FLOAT NOT NULL,
-	prix FLOAT NOT NULL,
-	image VARCHAR(255) NOT NULL,
-	id_couleur INT NOT NULL,
-	id_marque INT NOT NULL,
-	CONSTRAINT fk_couleur FOREIGN KEY (id_couleur) REFERENCES couleurs(id_couleur),
-	CONSTRAINT fk_marque FOREIGN KEY (id_marque) REFERENCES marques(id_marque)
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	size FLOAT NOT NULL,
+	price FLOAT NOT NULL,
+	img_path VARCHAR(255) NOT NULL,
+	id_color INT NOT NULL,
+	id_brand INT NOT NULL,
+	CONSTRAINT fkSneakers_colors FOREIGN KEY (id_color) REFERENCES colors(id),
+	CONSTRAINT fkSneakers_brands FOREIGN KEY (id_brand) REFERENCES brands(id)
 );
-CREATE TABLE sneak_me.paniers (
-	id_utilisateur INT NOT NULL,
+CREATE TABLE sneak_me.carts (
+	id_user INT NOT NULL,
 	id_sneaker INT NOT NULL,
-	quantite INT NOT NULL,
-	CONSTRAINT panier_primary_key PRIMARY KEY  (id_utilisateur, id_sneaker),
-	CONSTRAINT fk_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id_utilisateur),
-	CONSTRAINT fk_sneaker FOREIGN KEY (id_sneaker) REFERENCES sneakers(id_sneaker)
+	quantity INT NOT NULL,
+	CONSTRAINT pkCarts PRIMARY KEY (id_user, id_sneaker),
+	CONSTRAINT fkCarts_users FOREIGN KEY (id_user) REFERENCES users(id),
+	CONSTRAINT fkCarts_sneakers FOREIGN KEY (id_sneaker) REFERENCES sneakers(id)
 );
-CREATE TABLE sneak_me.commande_sneakers(
-	id_commande INT NOT NULL,
+CREATE TABLE sneak_me.status (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	name VARCHAR(255) NOT NULL
+);
+CREATE TABLE sneak_me.orders (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	order_date DATE NOT NULL,
+	id_status INT NOT NULL,
+	id_user INT NOT NULL,
+	CONSTRAINT fkOrders_status FOREIGN KEY (id_status) REFERENCES status(id),
+	CONSTRAINT fkOrders_users FOREIGN KEY (id_user) REFERENCES users(id)
+);
+CREATE TABLE sneak_me.orders_sneakers(
+	id_order INT NOT NULL,
 	id_sneaker INT NOT NULL,
-	quantite INT NOT NULL,
-	CONSTRAINT panier_primary_key PRIMARY KEY  (id_commande, id_sneaker)
+	quantity INT NOT NULL,
+	CONSTRAINT pkOrdersSneakers PRIMARY KEY  (id_order, id_sneaker)
+	CONSTRAINT fkOrdersSneakers_orders FOREIGN KEY (id_order) REFERENCES orders(id),
+	CONSTRAINT fkOrdersSneakers_sneakers FOREIGN KEY (id_sneaker) REFERENCES sneakers(id)
 );
-CREATE TABLE sneak_me.statuts (
-	id_statut INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	label VARCHAR(255) NOT NULL
-);
-CREATE TABLE sneak_me.commandes (
-	id_commande INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	id_utilisateur INT NOT NULL,
-	date_commande DATE NOT NULL,
-	id_statut INT NOT NULL,
-	CONSTRAINT fk_statut FOREIGN KEY (id_statut) REFERENCES statuts(id_statut),
-	CONSTRAINT fk_utilisateur2 FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id_utilisateur)
-);
+
+

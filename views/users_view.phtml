@@ -1,0 +1,13 @@
+<?php
+if($users){
+    foreach ($users as $user){?>
+        <ul>
+            <li><?php $user['nom']?></li>
+            <li><?php $user['prenom'] ?></li>
+            <li><?php $user['adresse'] ?></li>
+            <li><?php $user['email'] ?></li>
+        </ul>
+    <?php } 
+} else {?>
+    <h1>Aucun utilisateurs n'a été trouvé</h1>
+<?php }?>

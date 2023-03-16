@@ -1,1 +1,0 @@
-<H1>Je suis dans la vue utilisateur</H1>

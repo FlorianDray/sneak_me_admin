@@ -50,7 +50,7 @@ CREATE TABLE sneak_me.orders_sneakers(
 	id_order INT NOT NULL,
 	id_sneaker INT NOT NULL,
 	quantity INT NOT NULL,
-	CONSTRAINT pkOrdersSneakers PRIMARY KEY  (id_order, id_sneaker)
+	CONSTRAINT pkOrdersSneakers PRIMARY KEY  (id_order, id_sneaker),
 	CONSTRAINT fkOrdersSneakers_orders FOREIGN KEY (id_order) REFERENCES orders(id),
 	CONSTRAINT fkOrdersSneakers_sneakers FOREIGN KEY (id_sneaker) REFERENCES sneakers(id)
 );

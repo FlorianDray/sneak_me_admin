@@ -2,10 +2,10 @@
 if($users){
     foreach ($users as $user){?>
         <ul>
-            <li><?php $user['nom']?></li>
-            <li><?php $user['prenom'] ?></li>
-            <li><?php $user['adresse'] ?></li>
-            <li><?php $user['email'] ?></li>
+            <li><?php echo $user['name']?></li>
+            <li><?php echo $user['first_name'] ?></li>
+            <li><?php echo $user['adress'] ?></li>
+            <li><?php echo $user['mail'] ?></li>
         </ul>
     <?php } 
 } else {?>

@@ -7,7 +7,7 @@ class User {
     public function getAllUsers(){
         $db = new DBConnection();
         $conn = $db->connect();
-        $query = "SELECT id, name, mail, adress FROM utilisateurs";
+        $query = "SELECT * FROM users";
         $temp = $conn->prepare($query);
         $temp->execute();
         $users = $temp->fetchAll();

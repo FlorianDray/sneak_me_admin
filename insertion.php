@@ -54,5 +54,3 @@ CREATE TABLE sneak_me.orders_sneakers(
 	CONSTRAINT fkOrdersSneakers_orders FOREIGN KEY (id_order) REFERENCES orders(id),
 	CONSTRAINT fkOrdersSneakers_sneakers FOREIGN KEY (id_sneaker) REFERENCES sneakers(id)
 );
-
-

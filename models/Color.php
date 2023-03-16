@@ -1,21 +1,17 @@
 <?php 
 
-class Couleurs {
+class Color {
     private $_id;
-    private $_label;
+    private $_name;
 
     public function __construct() {
-        GetCouleurById(2);
-        $this->_id = 2;
-        $this->_label = 2;
-
     }
 
     public function GetId() {
         return $this->_id;
     }
-    public function GetLabel() {
-        return $this->_label;
+    public function GetName() {
+        return $this->_name;
     }
 
     private function GetCouleurById($id) {

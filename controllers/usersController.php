@@ -1,5 +1,5 @@
 <?php
-class UtilisateursController
+class usersController
 {
 
     public function __construct()

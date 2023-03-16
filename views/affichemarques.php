@@ -1,8 +1,17 @@
 <?php
 
-require "./models/Marques.php";
+require "./controllers/marquesController.php";
 
-$maMarque = new Marques(1, "Nike");
-?>
-<h1><?php echo $maMarque->getId(); ?></h1>
+class View {
+    public function showMarques($marques) {
+        // Affichage des marques dans un tableau HTML
 
+        echo "<table>";
+        foreach ($marques as $marques) {
+            echo "<tr><td>" . $marques['id'] . "</td>" . $marques['nom'] . "</td></tr>";
+        }
+        echo "</table>";
+    }
+}
+
+// $maMarque = new Marques(1, "Nike");
